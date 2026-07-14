@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Правительство Углешахтенской области</title>
+  <!-- Подключение современного шрифта для чистого стиля -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #ffffff;
+      color: #0b1e33;
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Основная сине-белая палитра */
+    :root {
+      --deep-blue: #0a2a4a;
+      --primary-blue: #1e4a7a;
+      --accent-blue: #2d6bb4;
+      --light-blue: #e7f0fa;
+      --soft-blue: #f4f8fd;
+      --white: #ffffff;
+      --gray-text: #2c3e50;
+      --border-light: #dce6f2;
+      --shadow-sm: 0 8px 20px rgba(10, 42, 74, 0.06);
+      --shadow-md: 0 12px 28px rgba(10, 42, 74, 0.08);
+    }
+
+    /* Гибкий контейнер */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Шапка и навигация */
+    .header {
+      background-color: var(--white);
+      border-bottom: 1px solid var(--border-light);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(8px);
+      background-color: rgba(255, 255, 255, 0.92);
+    }
+
+    .header-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 24px;
+    }
+
+    .logo-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--deep-blue);
+      letter-spacing: -0.3px;
+      line-height: 1.2;
+      padding: 0px 20px;
+    }
+
+    .logo-title span {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--primary-blue);
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--primary-blue);
+      padding: 10px 18px;
+      border-radius: 40px;
+      transition: all 0.2s ease;
+      font-size: 0.95rem;
+      background-color: transparent;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      background-color: var(--light-blue);
+      color: var(--deep-blue);
+    }
+
+    .nav-link.active {
+      background-color: var(--primary-blue);
+      color: white;
+    }
+
+    /* Hero секция */
+    .hero {
+      background: var(--accent-blue);
+      padding: 60px 0;
+      text-align: center;
+      border-bottom: 1px solid var(--border-light);
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      font-weight: 400;
+    }
+
+    /* Общие секции */
+    .section {
+      padding: 70px 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 650;
+      color: var(--deep-blue);
+      margin-bottom: 40px;
+      position: relative;
+      display: inline-block;
+      padding: 0px 20px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background-color: var(--accent-blue);
+      border-radius: 4px;
+      padding: 0px 120px;
+    }
+
+    /* Администрация — карточки */
+    .admin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+      margin-top: 20px;
+      padding: 0px 20px;
+    }
+
+    .admin-card {
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .admin-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .placeholder-img {
+      width: 90px;
+      height: 90px;
+      background: #e7f0fa;
+      border-radius: 50%;
+      margin: 0 auto 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-blue);
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border: 2px dashed var(--accent-blue);
+      background-color: #f0f5fc;
+    }
+
+    .admin-card h3 {
+      font-weight: 600;
+      color: var(--deep-blue);
+      margin-bottom: 6px;
+    }
+
+    .admin-card .role {
+      color: var(--primary-blue);
+      font-weight: 500;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+    }
+
+    .admin-card .desc {
+      color: #4a5c6c;
+      font-size: 0.9rem;
+      font-style: italic;
+      background: #f8fafd;
+      padding: 8px 12px;
+      border-radius: 12px;
+    }
+
+    /* Мероприятия */
+    .events-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding: 0px 20px;
+    }
+
+    .event-item {
+      display: flex;
+      flex-wrap: wrap;
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      align-items: center;
+      gap: 24px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .event-item:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .event-date {
+      background: var(--deep-blue);
+      color: white;
+      border-radius: 16px;
+      padding: 12px 20px;
+      font-weight: 600;
+      text-align: center;
+      min-width: 90px;
+    }
+
+    .event-info h4 {
+      font-weight: 650;
+      color: var(--deep-blue);
+      margin-bottom: 6px;
+    }
+
+    .event-info p {
+      color: #2c3e50;
+      font-size: 0.95rem;
+    }
+
+    .placeholder-badge {
+      background: #e7f0fa;
+      color: #1e4a7a;
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-top: 8px;
+      font-weight: 500;
+    }
+
+    .hided {
+      color: white;
+      cursor: help
+    }
+    .hided:visited {
+      color: white;
+      cursor: help
+    }
+
+    /* Контакты */
+    .contacts-wrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      background: var(--soft-blue);
+      border-radius: 24px;
+      padding: 36px;
+      margin-top: 20px;
+    }
+
+    .contact-block h3 {
+      font-weight: 650;
+      color: var(--deep-blue);
+      margin-bottom: 14px;
+      font-size: 1.2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      color: #2c3e50;
+    }
+
+    .contact-icon {
+      background: var(--white);
+      border-radius: 12px;
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: var(--primary-blue);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    }
+
+    .placeholder-text {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: #2c3e50;
+      border: 1px dashed var(--accent-blue);
+      font-size: 0.9rem;
+    }
+
+    .footer {
+      background-color: var(--deep-blue);
+      color: rgba(255,255,255,0.85);
+      padding: 32px 0;
+      margin-top: auto;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 640px) {
+      .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .hero h1 {
+        font-size: 1.9rem;
+      }
+      .event-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo-title">
+        Правительство Углешахтенской области
+        <span>Официальный портал</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#admin" class="nav-link">Администрация</a>
+        <a href="#events" class="nav-link">Мероприятия</a>
+        <a href="#contacts" class="nav-link">Контакты</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero блок -->
+    <section class="hero">
+      <div class="container">
+        <h1>Углешахтенская область</h1>
+        <p>Открытость, развитие и благополучие жителей. Актуальная информация о работе правительства региона.</p>
+      </div>
+    </section>
+
+    <!-- Администрация -->
+    <section id="admin" class="section container">
+      <h2 class="section-title">Администрация</h2>
+      <div class="admin-grid">
+        <div class="admin-card">
+          <div class="placeholder-img">фото</div>
+          <h3>Иван Сергеевич Громов</h3>
+          <div class="role">Губернатор Углешахтенской области</div>
+          <div class="desc">[Плейсхолдер: краткая биография и обязанности губернатора]</div>
+        </div>
+        <div class="admin-card">
+          <div class="placeholder-img">фото</div>
+          <h3>Елена Викторовна Соболева</h3>
+          <div class="role">Первый заместитель Губернатора</div>
+          <div class="desc">[Плейсхолдер: курирует экономический блок и инвестиции]</div>
+        </div>
+        <div class="admin-card">
+          <div class="placeholder-img">фото</div>
+          <h3>Алексей Дмитриевич Руднев</h3>
+          <div class="role">Руководитель аппарата</div>
+          <div class="desc">[Плейсхолдер: организация работы правительства]</div>
+        </div>
+        <div class="admin-card">
+          <div class="placeholder-img">фото</div>
+          <h3>Марина Павловна Черных</h3>
+          <div class="role">Министр социального развития</div>
+          <div class="desc">[Плейсхолдер: социальная политика региона]</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Мероприятия -->
+    <section id="events" class="section container">
+      <h2 class="section-title">Мероприятия</h2>
+      <div class="events-list">
+        <div class="event-item">
+          <div class="event-date">25 июля<br><small>2026</small></div>
+          <div class="event-info">
+            <h4>Совещание по развитию угольной промышленности</h4>
+            <p>Обсуждение перспектив шахт и модернизации оборудования. Участвуют представители профильных ведомств.</p>
+            <span class="placeholder-badge">Место уточняется</span>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">12 августа<br><small>2026</small></div>
+          <div class="event-info">
+            <h4>День шахтёра — торжественный приём</h4>
+            <p>Праздничное мероприятие, награждение почётных работников отрасли. Подробная программа будет позже.</p>
+            <span class="placeholder-badge">Время уточняется</span>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">5 сентября<br><small>2026</small></div>
+          <div class="event-info">
+            <h4>Открытие нового спортивного комплекса</h4>
+            <p>Церемония с участием руководства области. Адрес и время старта — на стадии согласования.</p>
+            <span class="placeholder-badge">Ожидается фотоотчет</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="access">
+      <div>
+        <a href="/secret" class="hided">Узнать больше информации</a>
+      </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts" class="section container">
+      <h2 class="section-title">Контакты</h2>
+      <div class="contacts-wrapper">
+        <div class="contact-block">
+          <h3>📍 Адрес</h3>
+          <div class="contact-item">
+            <div class="contact-icon">📫</div>
+            <div class="placeholder-text">
+              г. Углешахтенск, ул. Советская, д. 1, индекс 654000
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🕓</div>
+            <div class="placeholder-text">
+              Пн–Чт 9:00–18:00, Пт 9:00–16:45
+            </div>
+          </div>
+        </div>
+        <div class="contact-block">
+          <h3>📞 Связь</h3>
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div class="placeholder-text">Administrationugleshahtinsk@gmail.com</div>
+          </div>
+        <div class="contact-block">
+          <h3>💬 Пресс-служба</h3>
+          <div class="contact-item">
+            <div class="contact-icon">📹</div>
+            <div class="placeholder-text">uglesahtinsk</div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📢</div>
+            <div class="placeholder-text">podslushka_ugleshahtinsk</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 Правительство Углешахтенской области. Официальный сайт.</p>
+      <p style="margin-top: 8px; font-size: 0.8rem; opacity: 0.7;">Все материалы и фотографии заменены плейсхолдерами. Информация уточняется.</p>
+    </div>
+  </footer>
+
+  <!-- Небольшой скрипт для плавной прокрутки и подсветки активного раздела -->
+  <script>
+    (function() {
+      const navLinks = document.querySelectorAll('.nav-link');
+      const sections = document.querySelectorAll('section[id]');
+
+      // Плавная прокрутка при клике на навигацию
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetSection = document.getElementById(targetId);
+          if (targetSection) {
+            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      // Подсветка активной ссылки при скролле (простая реализация)
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 120;
+          if (window.scrollY >= sectionTop) {
+            current = section.getAttribute('id');
+          }
+        });
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+          }
+        });
+        // Если находимся в самом верху, снимаем активность
+        if (window.scrollY < 100) {
+          navLinks.forEach(l => l.classList.remove('active'));
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
